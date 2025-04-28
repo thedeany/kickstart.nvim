@@ -1202,9 +1202,23 @@ return {
     -- }
     local ayu = require 'ayu'
 
+    local colors = require 'ayu.colors'
+    colors.generate(true)
+
     ayu.setup {
       mirage = true,
       -- terminal = true,
+      overrides = function()
+        if vim.o.background == 'dark' then
+          return {}
+        else
+          return {
+            LineNr = { fg = colors.accent },
+            CursorLineNr = { fg = colors.bg, bg = colors.accent },
+            LspCodeLens = { fg = '#bbbbbb', bg = '#efefef' },
+          }
+        end
+      end,
     }
     ayu.colorscheme()
   end,

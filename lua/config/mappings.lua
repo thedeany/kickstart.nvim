@@ -41,3 +41,18 @@ vim.keymap.set('n', '<Leader>c', function()
     require('alpha').start()
   end
 end, { desc = 'Close buffer' })
+
+vim.keymap.set('n', 'x', 'd') -- remap x (delete char under cursor) to yank-delete in case we do ever want to use that; think ctrl+X (cut)
+vim.keymap.set('n', 'd', '"_d') -- prevents yank on delete (which we almost never want)
+vim.keymap.set('v', 'd', '"_d') -- prevents yank on delete (which we almost never want)
+
+vim.keymap.set('n', '<Leader>y', '"+y', { desc = 'Yank to clipboard' }) -- yank to system clipboard
+
+vim.keymap.set('n', 'grh', function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { 0 }, { 0 })
+end, { desc = 'Toggle inlay hints' })
+
+local betterEscapeMaps = { 'kk', 'jj', 'jk', 'kj' }
+for _, map in pairs(betterEscapeMaps) do
+  vim.keymap.set('i', map, '<Esc>')
+end
