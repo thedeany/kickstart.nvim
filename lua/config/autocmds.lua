@@ -11,3 +11,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+local group = vim.api.nvim_create_augroup('lsp_codelens_refresh', { clear = false })
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, {
+  desc = 'Refresh codelens on InsertLeave and BufEnter',
+  group = group,
+  callback = function(args)
+    vim.lsp.codelens.refresh { bufnr = args.buf }
+  end,
+})
