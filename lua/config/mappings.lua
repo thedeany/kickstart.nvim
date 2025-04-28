@@ -30,3 +30,14 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+
+-- mine
+vim.keymap.set('n', '[b', ':bprev<cr>', { desc = 'Previous buffer' })
+vim.keymap.set('n', ']b', ':bnext<cr>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<Leader>c', function()
+  local bufs = vim.fn.getbufinfo { buflisted = 1 }
+  vim.cmd 'bdelete'
+  if not bufs[2] then
+    require('alpha').start()
+  end
+end, { desc = 'Close buffer' })

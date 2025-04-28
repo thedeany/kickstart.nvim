@@ -18,7 +18,25 @@ return {
       window = {
         mappings = {
           ['\\'] = 'close_window',
+          ['<Esc>'] = 'close_window',
         },
+      },
+      filtered_items = {
+        visible = false,
+        hide_dotfiles = false,
+        hide_hidden = false, -- Windows hidden files
+        never_show = {
+          '.DS_Store',
+        },
+      },
+    },
+    event_handlers = {
+      {
+        event = 'file_opened',
+        handler = function(_)
+          --auto close
+          require('neo-tree.command').execute { action = 'close' }
+        end,
       },
     },
   },
