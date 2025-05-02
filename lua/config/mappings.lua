@@ -32,6 +32,11 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
 -- mine
+
+vim.keymap.set('n', '<Leader><Leader>x', '<cmd>source %<CR>')
+vim.keymap.set('n', '<Leader>x', ':.lua<CR>', { desc = 'E[x]ecute current Lua line' })
+vim.keymap.set('v', '<Leader>x', ':lua<CR>', { desc = 'E[x]ecute visual selection' })
+
 vim.keymap.set('n', '[b', ':bprev<cr>', { desc = 'Previous buffer' })
 vim.keymap.set('n', ']b', ':bnext<cr>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<Leader>c', function()
@@ -56,3 +61,5 @@ local betterEscapeMaps = { 'kk', 'jj', 'jk', 'kj' }
 for _, map in pairs(betterEscapeMaps) do
   vim.keymap.set('i', map, '<Esc>')
 end
+
+vim.keymap.set({ 'n', 't' }, '<C-t>', '<cmd>ToggleTerm direction=float<CR>')
