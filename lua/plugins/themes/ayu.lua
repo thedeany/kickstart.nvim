@@ -1195,6 +1195,7 @@ end
 return {
   'Shatur/neovim-ayu',
   name = 'ayu',
+  dependencies = { 'saghen/blink.cmp' },
   config = function()
     -- require("ayu").setup {
     --   mirage = true,
@@ -1209,14 +1210,18 @@ return {
       mirage = true,
       -- terminal = true,
       overrides = function()
+        local both = {
+          BlinkCmpGhostText = { link = 'CmpGhostText' },
+        }
+
         if vim.o.background == 'dark' then
-          return {}
+          return vim.tbl_extend('force', both, {})
         else
-          return {
+          return vim.tbl_extend('force', both, {
             LineNr = { fg = colors.accent },
             CursorLineNr = { fg = colors.bg, bg = colors.accent },
             LspCodeLens = { fg = '#bbbbbb', bg = '#efefef' },
-          }
+          })
         end
       end,
     }

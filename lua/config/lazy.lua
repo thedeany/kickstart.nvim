@@ -241,10 +241,23 @@ require('lazy').setup({
         nerd_font_variant = 'mono',
       },
 
+      cmdline = { enabled = false },
+
       completion = {
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
         documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        menu = {
+          draw = {
+            columns = function(ctx)
+              if ctx.mode == 'cmdline' then
+                return { { 'kind_icon' }, { 'label' } }
+              else
+                return { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } }
+              end
+            end,
+          },
+        },
       },
 
       sources = {
