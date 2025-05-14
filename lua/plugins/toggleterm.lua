@@ -2,10 +2,16 @@ return {
   {
     'akinsho/toggleterm.nvim',
     version = '*',
-    opts = {
-      -- shell = 'cmd /k ""%ConEmuDir%\\..\\init.bat" & "C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\Common7\\Tools\\VsDevCmd.bat""',
-      shell = vim.o.shell,
-      -- shell = 'cmd.exe /k C:\\dev\\terminal.cmd',
-    },
+    config = function()
+      require('toggleterm').setup()
+      local Terminal = require('toggleterm.terminal').Terminal
+      local lazygit = Terminal:new { cmd = 'lazygit', direction = 'float' }
+
+      function _lazygit_toggle()
+        lazygit:toggle()
+      end
+
+      vim.api.nvim_set_keymap('n', '<leader>g', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true })
+    end,
   },
 }

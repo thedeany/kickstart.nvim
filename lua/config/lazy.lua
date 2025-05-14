@@ -336,6 +336,11 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    init = function()
+      vim.wo.foldlevel = 99
+      vim.wo.foldmethod = 'expr'
+      vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    end,
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
       ensure_installed = {

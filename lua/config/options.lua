@@ -9,6 +9,8 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- vim.opt.winborder = 'single'
+
 vim.opt.wrap = false
 
 -- Enable mouse mode, can be useful for resizing splits for example!
@@ -39,7 +41,7 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
 
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.opt.updatetime = 1000
 
 -- Decrease mapped sequence wait time
 vim.opt.timeoutlen = 300
