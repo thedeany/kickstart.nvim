@@ -42,3 +42,15 @@ vim.api.nvim_create_autocmd({ 'CursorHold' }, {
     }
   end,
 })
+
+-- ensure fold settings are applied on buffer open
+vim.api.nvim_create_autocmd('BufReadPost', {
+  callback = function()
+    vim.defer_fn(function()
+      vim.opt.foldmethod = 'expr'
+      vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+      vim.opt.foldlevel = 99
+      vim.opt.foldenable = true
+    end, 20)
+  end,
+})
