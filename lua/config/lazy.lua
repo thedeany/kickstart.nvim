@@ -167,6 +167,7 @@ require('lazy').setup({
         css = { 'prettier' },
         json = { 'prettier' },
         yaml = { 'prettier' },
+        sql = { 'pg_format' },
       },
     },
   },
