@@ -41,8 +41,11 @@ vim.keymap.set('n', '[b', ':bprev<cr>', { desc = 'Previous buffer' })
 vim.keymap.set('n', ']b', ':bnext<cr>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<Leader>c', function()
   local bufs = vim.fn.getbufinfo { buflisted = 1 }
-  vim.cmd 'bdelete'
+  -- vim.cmd 'bdelete'
+  Snacks.bufdelete()
+
   if not bufs[2] then
+    vim.cmd 'bdelete'
     require('alpha').start()
   end
 end, { desc = 'Close buffer' })
